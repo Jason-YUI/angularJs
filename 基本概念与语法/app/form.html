@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="UserInfoMoudle">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+    <script src="js/Form.js"></script>
+</head>
+<body>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">双向数据绑定</div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal" role="form" ng-controller="userInfoCtrl">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            邮箱:
+                        </label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="email" placeholder="126@example.com" ng-model="userInfo.email"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            密码:
+                        </label>
+                        <div class="col-md-10">
+                            <input type="password" class="form-control" placeholder="只能数字、字母、下划线"  ng-model="userInfo.password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="userInfo.autoLogin">remember me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button class="btn btn-primary" ng-click="getFormDate()">
+                                获取表单数据
+                            </button>
+                            <button class="btn btn-primary" ng-click="setFormDate()">
+                                设置表单数据
+                            </button>
+                            <button class="btn btn-primary" ng-click="resetFormDate()">
+                                重置表单数据
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="myCssModule">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div ng-controller="ngToggleModule">
+        <button ng-click="toggleMenu()">Toggle Menu</button>
+        <ul ng-show="menuState.show">
+            <li ng-click="stun()">stun</li>
+            <li ng-click="distegrate()">distegrate</li>
+            <li ng-click="erare()">erare</li>
+        </ul>
+    </div>
+</body>
+<script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+<script src="js/NgShow.js"></script>
+</html>

@@ -1,0 +1,56 @@
+/**
+ * Created by Administrator on 2016/9/6.
+ */
+var supermodule=angular.module("super-module",[]);
+supermodule.directive("superman",function(){
+    return{
+        scope:{},
+        restrict:"AE",
+        controller:function($scope){
+            $scope.abilities=[];
+            this.addStrength=function(){
+                $scope.abilities.push("strength");
+            };
+            this.addSpeed=function(){
+                $scope.abilities.push("speed");
+            };
+            this.addLight=function(){
+                $scope.abilities.push("light");
+            }
+        },
+        link:function(scope,element,attr){
+            element.addClass('btn btn-primary');
+            element.bind("mouseenter",function(){
+                console.log(scope.abilities);
+            })
+        }
+    }
+});
+
+supermodule.directive("strength",function(){
+    return{
+        require:'^superman',
+        link:function(scope,element,attr,supermanCtrl){
+            supermanCtrl.addStrength();
+        }
+    }
+});
+//力量
+supermodule.directive("speed",function(){
+    return{
+        require:'^superman',
+        link:function(scope,element,attr,supermanCtrl){
+            supermanCtrl.addSpeed();
+        }
+    }
+});
+//敏捷
+supermodule.directive("light",function(){
+    return{
+        require:'^superman',
+        link:function(scope,element,attr,supermanCtrl){
+            supermanCtrl.addLight();
+        }
+    }
+});
+//发光
