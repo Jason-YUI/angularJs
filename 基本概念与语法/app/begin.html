@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div ng-controller="InvoiceCntl">
+    <b>Invice:</b>
+    <br/>
+    <br/>
+    <table>
+        <tr>
+            <td>Quanity:</td>
+            <td>Cost:</td>
+        </tr>
+        <tr>
+            <td><input type="number" min="0" ng-model="qty" required></td>
+            <td><input type="number" ng-model="cost" required></td>
+        </tr>
+    </table>
+    <hr/>
+    <b>Total:</b>{{qty*cost}}
+</div>
+<script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+<script src="js/begin.js"></script>
+</body>
+</html>
