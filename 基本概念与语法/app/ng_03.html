@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html >
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+</head>
+<body>
+<!--
+**********************************************************************
+angularJs指令
+-->
+
+<!-- <div ng-init="firstName='jason';lastName='Doe'">
+     <div ng-bind="firstName+' '+lastName"></div>
+ </div>-->
+<!--<div ng-init="person={firstName:'jason',lastName:'Doe'}">
+    <p>{{person.firstName + " " +  person.lastName}}</p>
+</div>-->
+<!--<div ng-init="point=[0,1,2,3,4]">
+    <p>{{point[1]}}</p>
+</div>-->
+<!--<div ng-init="firstName='jason'">
+    <p>在输入框中尝试输入:</p>
+    <p>username：<input type="text" ng-model="firstName"></p>
+    <p>你输入的是：{{firstName}}</p>
+</div>-->
+<!--<div ng-init="quantitys=2;price=2">
+    <h2>价格计算器</h2>
+    数量：<input type="text" ng-model="quantitys">
+    价格：<input type="text" ng-model="price">
+    <p>总价：{{quantitys*price}}</p>
+</div>-->
+<!--<div ng-init="Numbers=[1,2,3,4]">
+    <p>循环数组</p>
+    <ui>
+        <li ng-repeat="x in Numbers">
+            {{x}}
+        </li>
+    </ui>
+</div>-->
+<!--<div ng-init="names=[
+{name:'json',country:'china'},
+{name:'shawn',country:'American'},
+{name:'Ann',country:'jimmy'}
+]">
+    <p>循环对象</p>
+    <ul>
+        <li ng-repeat="x in names">
+            {{x.name+","+x.country}}
+        </li>
+    </ul>
+</div>-->
+<!--directive runoob-directive-->
+<!--<div runoob-directive></div>
+<script>
+    var app = angular.module("myApp", []);
+    app.directive("runoobDirective", function() {
+        return {
+            template : "<h1>自定义指令!</h1>"
+        };
+    });
+</script>-->
+<!--<script>
+    var app=angular.module("myApp",[]);
+    app.directive("runoobDirective",function(){
+        return{
+            restrict:"M",
+            replace:true,
+            template:"<h1>自定义指令</h1>"
+        }
+    });
+</script>
+
+<p><strong>注意：</strong> 我们需要在该实例添加 <strong>replace</strong> 属性， 否则评论是不可见的。</p>
+
+<p><strong>注意：</strong> 你必须设置 <b>restrict</b> 的值为 "M" 才能通过注释来调用指令。</p>-->
+
+<!--
+angularJs模型
+*******************************************************************************
+-->
+<!--ng-model指令-->
+<!--<div ng-controller="myCtrl">
+    名字：<input type="text" ng-model="name">
+</div>-->
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+    名字: <input ng-model="name">
+    <h1>你输入了: {{name}}</h1>
+</div>-->
+<!--<form name="myForm">
+    Email:<input type="email" name="EmailAdress" ng-model="text">
+    <span ng-show="myForm.EmailAdress.$error.email">不是一个合法的邮箱地址</span>
+</form>
+<p>在输入框中输入你的邮箱地址，如果不是一个合法的邮箱地址，会弹出提示信息。</p>
+<script>
+/*    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function ($scope) {
+        $scope.name = "shawn";
+    });*/
+
+</script>-->
+<!--<form name="myForm" ng-init="myText='text@outlook.com'">
+Email:<input type="text" name="myEmail" ng-model="mytext" required>
+<h1>状态</h1>
+<p>valid:{{myForm.myEmail.$valid}}</p>
+<p>Dirty:{{myForm.myEmail.$dirty}}</p>
+<p>Touched:{{myForm.myEmail.$touched}}</p>-->
+<!--</form>-->
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+
+    <input ng-model="name">
+
+    <h1>我的名字是 {{name}}</h1>
+
+</div>-->
+<!--<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.name = "John Doe";
+    });
+</script>-->
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+    <ul>
+        <li ng-repeat="x in Names">{{x}}</li>
+    </ul>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("myCtrl",function($scope){
+        $scope.Names=["shawn","john","jimmy"];
+    });
+
+</script>-->
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+    <h1>{{lastName}}家族成员：</h1>
+    <ul>
+        <li ng-repeat="x in names">{{x}}&nbsp{{lastName}}</li>
+    </ul>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("myCtrl",function($scope,$rootScope){
+        $scope.names=["jaosn","shawn","jimmy"];
+        $rootScope.lastName="John";
+    });
+</script>-->
+<!--<div ng-app="myApp" ng-controller="personCtrl">
+    姓：<input type="text" ng-model="firstName">
+    <br/>
+    名: <input type="text" ng-model="lastName">
+    全名：{{fullName()}}
+    <p>姓名为：{{lastName | uppercase}}</p>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("personCtrl",function($scope){
+        $scope.firstName="John";
+        $scope.lastName="Doe";
+        $scope.fullName=function(){
+            return $scope.firstName+" "+$scope.lastName;
+        }
+    });
+</script>-->
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <p>欢迎信息:</p>
+
+    <h1>{{myWelcome}}</h1>
+
+</div>
+
+<p> $http 服务向服务器请求信息，返回的值放入变量 "myWelcome" 中。</p>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $http.get("welcome.htm").then(function (response) {
+            $scope.myWelcome = response.data;
+        });
+    });
+</script>
+</body>
+</html>
