@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
@@ -162,7 +162,7 @@ Email:<input type="text" name="myEmail" ng-model="mytext" required>
         }
     });
 </script>-->
-<div ng-app="myApp" ng-controller="myCtrl">
+<!--<div ng-app="myApp" ng-controller="myCtrl">
 
     <p>欢迎信息:</p>
 
@@ -178,6 +178,230 @@ Email:<input type="text" name="myEmail" ng-model="mytext" required>
             $scope.myWelcome = response.data;
         });
     });
-</script>
+</script>-->
+<!--
+$timeout服务
+-->
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+    <p>两秒后显示信息:</p>
+    <h1>{{myHeader}}</h1>
+</div>
+<p>$timeout 访问在规定的毫秒数后执行指定函数。</p>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("myCtrl",function($scope,$timeout){
+        $scope.myHeader="hello world";
+        $timeout(function(){
+            $scope.myHeader="how are you today?";
+        },2000);
+    });
+</script>-->
+
+<!--
+$interval服务
+-->
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+    <p>现在时间是:</p>
+    <h1>{{theTime}}</h1>
+</div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $interval) {
+        $scope.theTime = new Date().toDateString();
+        $interval(function () {
+            $scope.theTime = new Date().toDateString();
+        }, 1000);
+    });
+</script>-->
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+    <p>255的16进制</p>
+    <h1>{{hex}}</h1>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.service("hexafy",function(){
+        this.myFunc=function(x){
+            return x.toString(16);
+        }
+    });
+    app.controller("myCtrl",function($scope,hexafy){
+        $scope.hex=hexafy.myFunc(255);
+    });
+</script>-->
+<!--<div ng-app="myApp">
+    <h1>{{255 | myFormat}}</h1>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.service("hexary",function(){
+        this.func=function(x){
+            return x.toString(16);
+        }
+    });
+    app.filter("myFormat",['hexary',function(hexary){
+        return function(x){
+           return hexary.func(x);
+        }
+    }]);
+</script>-->
+
+<!--
+*********************************************
+在对象数组中获取数据使用过滤器中
+-->
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+    <ul>
+        <li ng-repeat="x in counts">{{x | myFormat}}</li>
+    </ul>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    //服务
+    app.service("hexary",function(){
+        this.func=function(x){
+            return x.toString(16);
+        }
+    });
+    //过滤器
+    app.filter("myFormat",['hexary',function(hexary){
+        return function(x){
+            return hexary.func(x);
+        }
+    }]);
+    //控制器
+    app.controller("myCtrl",function($scope){
+        $scope.counts=[255,266,800];
+    });
+</script>-->
+
+<!--http://www.runoob.com/try/angularjs/data/sites.php-->
+
+<!--
+angularJs http   ----------读取json文件************************************************
+-->
+<!--<div ng-app="myApp" ng-controller="siteCtrl">
+    <ul>
+        <li ng-repeat="x in names">
+            {{x.Name+" " + x.Country }}
+        </li>
+    </ul>
+</div>
+<script>
+/*    $origin = isset($_SERVER['HTTP_ORIGIN'])? $_SERVER['HTTP_ORIGIN'] : '';
+    $allow_origin = array(
+            'http://www.runoob.com/try/angularjs/data/sites.php'
+    );
+    if(in_array($origin, $allow_origin)){
+        header('Access-Control-Allow-Origin:'.$origin);
+    }*/
+    var app=angular.module("myApp",[]);
+    app.controller("siteCtrl",function($scope,$http){
+        $http.get("http://www.runoob.com/try/angularjs/data/sites.php").success(function(response){
+            $scope.names=response.sites;
+        })
+    });
+</script>-->
+
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+    &lt;!&ndash;<select ng-model="selectedName" name="optionSec" ng-options="x for x in names"></select>&ndash;&gt;
+    <select>
+        <option ng-repeat="x in names">{{x}}</option>
+    </select>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("myCtrl",function($scope){
+        $scope.names=["op1","op2","op3"];
+    })
+</script>-->
+<!--<div ng-app="myApp" ng-controller="ctrlSites">
+    <select ng-model="seletedSites" ng-options="x.side for x in sites"></select>
+    <h1>你选择的网站是：{{seletedSites.site}}</h1>
+    <h1>地址是：{{seletedSites.url}}</h1>
+&lt;!&ndash;    <select ng-model="seletedSites">
+        <option ng-repeat="x in sites" value="{{x.url}}">{{x.site}}</option>
+    </select>
+    <h2>你选择的是：{{seletedSites}}</h2>&ndash;&gt;
+</div>
+
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("ctrlSites",function($scope){
+        $scope.sites=[
+            {site : "Google", url : "http://www.google.com"},
+            {site : "Runoob", url : "http://www.runoob.com"},
+            {site : "Taobao", url : "http://www.taobao.com"}
+        ];
+    });
+</script>-->
+
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+    <p>选择的网站是:</p>
+    <select ng-model="selectedSite" ng-options="x for (x ,y) in sites"></select>
+    你选择的是：{{selectedSite}}
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("myCtrl",function($scope){
+        $scope.sites={
+            site01:"Google",
+            site02:"Runoob",
+            site03:"Taobao"
+        }
+    });
+</script>-->
+<!--
+x---key
+y---value
+-->
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+    <select ng-model="selectNames" ng-options="y.brand for (x,y) in cars"></select>
+
+    <h1>你选择的是：{{selectNames.brand}}</h1>
+
+    <h2>模型：{{selectNames.model}}</h2>
+
+    <h3>颜色：{{selectNames.color}}</h3>
+</div>
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function ($scope) {
+        $scope.cars = {
+            car01: {brand: "ford1", model: "Mustring1", color: "red"},
+            car02: {brand: "ford2", model: "Mustring2", color: "blue"},
+            car03: {brand: "ford3", model: "Mustring3", color: "green"}
+        };
+    });
+</script>-->
+<style>
+    table, th , td {
+        border: 1px solid grey;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+    table tr:nth-child(odd) {
+        background-color: #f1f1f1;
+    }
+    table tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+</style>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <table>
+        <tr ng-repeat="x in names">
+            <td>{{x.Name}}</td>
+            <td>{{x.Url}}</td>
+            <td>{{x.Country}}</td>
+        </tr>
+    </table>
+</div>
 </body>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("myCtrl",function($scope,$http){
+        $http.get("../app/js/site.json").success(function(response){
+            $scope.names=response.sites;
+        });
+    });
+</script>
 </html>
