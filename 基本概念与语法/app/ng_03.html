@@ -373,35 +373,127 @@ y---value
         };
     });
 </script>-->
-<style>
+<!--<style>
     table, th , td {
         border: 1px solid grey;
         border-collapse: collapse;
         padding: 5px;
     }
-    table tr:nth-child(odd) {
-        background-color: #f1f1f1;
-    }
-    table tr:nth-child(even) {
-        background-color: #ffffff;
-    }
-</style>
-<div ng-app="myApp" ng-controller="myCtrl">
+</style>-->
+<!--<div ng-app="myApp" ng-controller="myCtrl">
     <table>
-        <tr ng-repeat="x in names">
+        <tr ng-repeat="x in names |orderBy:'Country'">
+            <td>{{$index+1}}</td>
             <td>{{x.Name}}</td>
-            <td>{{x.Url}}</td>
+            <td>{{x.Url |uppercase}}</td>
             <td>{{x.Country}}</td>
         </tr>
     </table>
+</div>-->
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+    <table>
+        <tr ng-repeat="x in names">
+            <td ng-if="$odd" style="background-color: #f1f1f1">{{x.Name}}</td>
+            <td ng-if="$even">{{x.Name}}</td>
+            <td ng-if="$odd" style="background-color: #f1f1f1">{{x.Url}}</td>
+            <td ng-if="$even">{{x.Url}}</td>
+            <td ng-if="$odd" style="background-color: #f1f1f1">{{x.Country}}</td>
+            <td ng-if="$even">{{x.Country}}</td>
+        </tr>
+    </table>
+</div>-->
+<!--<div ng-app="" ng-init="mySwitch=true">
+    <p>
+        <button ng-disabled="mySwitch">点我</button>
+    </p>
+    <p>
+        <input type="checkbox" ng-model="mySwitch">按钮
+    </p>
+&lt;!&ndash;    <p>
+        {{mySwitch}}
+    </p>&ndash;&gt;
+</div>-->
+<!--<div ng-app="" ng-init="hour=12">
+   &lt;!&ndash; <p ng-show="true">我是可见的</p>
+    <p ng-show="false">我是不可见的</p>&ndash;&gt;
+    <p ng-show="hour>11">你是可见的</p>
+</div>-->
+<!--<div ng-app="">
+    <p ng-hide="true">111</p>
+    <p ng-hide="false">222</p>
+</div>-->
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+    <button ng-click="count=count+1">点我</button>
+    <p>{{count}}</p>
 </div>
 </body>
 <script>
+    var app=angular.module("myApp",[]);
+    app.controller("myCtrl",function($scope){
+        $scope.count=0;
+    });
+</script>-->
+<!--<script>
     var app=angular.module("myApp",[]);
     app.controller("myCtrl",function($scope,$http){
         $http.get("../app/js/site.json").success(function(response){
             $scope.names=response.sites;
         });
     });
+</script>-->
+<!--<div ng-app="myApp" ng-controller="myCtrl">
+    <button ng-click="toggle()">隐藏/显示</button>
+    <p ng-hide="myVar">
+        名：<input type="text" ng-model="firstname">
+        姓：<input type="text" ng-model="lastname">
+        <br/>
+        <br/>
+        fullname:{{firstname+' '+lastname}}
+    </p>
+</div>
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function ($scope) {
+        $scope.firstname = "John";
+        $scope.lastname = "Doe";
+        $scope.myVar = false;
+        $scope.toggle = function () {
+            $scope.myVar = !$scope.myVar;
+        }
+    });
+</script>-->
+<!--<div ng-app="myApp" runoob-directive></div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.directive("runoobDirective",function(){
+        return{
+            template:"1111"
+        };
+    });
+</script>-->
+<div ng-app="myApp" ng-controller="formCtrl">
+    <form novalidate>
+        firstName:
+        <br/>
+        <input type="text" ng-model="user.firstname"><br/>
+        lastName:
+        <br/>
+        <input type="text" ng-model="user.lastname"><br/>
+        <br/>
+        <button ng-click="reset()">Reset</button>
+    </form>
+    <p>form:{{user}}</p>
+    <!--<p>master:{{master}}</p>-->
+</div>
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("formCtrl", function ($scope) {
+        $scope.master = {firstname: "jason", lastname: "Doe"};
+        $scope.reset = function () {
+            $scope.user = angular.copy($scope.master);
+        };
+        $scope.reset();
+    });
 </script>
+</body>
 </html>

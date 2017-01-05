@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html  ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-controller="userCtrl">
+    <div class="container">
+        <h3>users</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Edit</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>PassWord</th>
+                    <th>Repeat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td>
+                        <button class="btn" ng-click="editUser(user.id)">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit
+                        </button>
+                    </td>
+                    <td>{{user.fName}}</td>
+                    <td>{{user.LName}}</td>
+                    <td>{{user.passwd1}}</td>
+                    <td>{{user.passwd2}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr/>
+        <button class="btn btn-success" ng-click="editUser('new')">
+            <span class="glyphicon glyphicon-user"></span>create new user
+        </button>
+        <hr/>
+        <h3 ng-show="edit">create new user:</h3>
+        <h3 ng-show="edit">edit user:</h3>
+
+        <form action="" class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">First Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" ng-model="fName" ng-disabled="!edit" placeholder="First Name"/>
+                </div>
+            </div>
+            <!--form-group-->
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Last Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" ng-model="LName" ng-disabled="!edit" placeholder="Last Name"/>
+                </div>
+            </div>
+            <!--form-group-->
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Password:</label>
+                <div class="col-sm-10">
+                    <input type="password" ng-model="passwd1" ng-disabled="!edit" placeholder="Password"/>
+                </div>
+            </div>
+            <!--form-group-->
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Repeat:</label>
+                <div class="col-sm-10">
+                    <input type="password" ng-model="passwd2" ng-disabled="!edit" placeholder="RepeatPassword"/>
+                </div>
+            </div>
+            <!--form-group-->
+        </form>
+        <hr/>
+        <button class="btn btn-success" ng-disabled="error || incrementer">
+            <span class="glyphicon glyphicon-save"></span>
+            Save Change
+        </button>
+    </div>
+</body>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("userCtrl",function($scope){
+        $scope.fName='';
+        $scope.LName='';
+        $scope.passwd1='';
+        $scope.passwd2='';
+        $scope.users=[
+            {id:1, fName:'Hege', LName:"Pege",passwd1:"111",passwd2:"222" },
+            {id:2, fName:'Kim',  LName:"Pim",passwd1:"111",passwd2:"222" },
+            {id:3, fName:'Sal',  LName:"Smith" ,passwd1:"111",passwd2:"222"},
+            {id:4, fName:'Jack', LName:"Jones" ,passwd1:"111",passwd2:"222"},
+            {id:5, fName:'John', LName:"Doe" ,passwd1:"111",passwd2:"222"},
+            {id:6, fName:'Peter',LName:"Pan" ,passwd1:"111",passwd2:"222"}
+        ];
+        $scope.edit=true;
+        $scope.error=false;
+        $scope.incrementer=false
+        $scope.editUser=function(id){
+            if(id== 'new'){
+                $scope.edit=true;
+                $scope.incrementer=true;
+                $scope.fName='';
+                $scope.LName='';
+                $scope.passwd1='';
+                $scope.passwd2='';
+            }else{
+                $scope.edit=false;
+                $scope.fName=$scope.users[id-1].fName;
+                $scope.LName=$scope.users[id-1].LName;
+            }
+        };
+        /*
+         * $watch是一个scope函数，用于监听模型变化，当你的模型部分发生变化时它会通知你。
+         * */
+        $scope.$watch("fName",function(){$scope.test();});
+        $scope.$watch("LName",function(){$scope.test();});
+        $scope.$watch("passwd1",function(){$scope.test();});
+        $scope.$watch("passwd2",function(){$scope.test();});
+        $scope.test=function(){
+            if($scope.passwd1 !== $scope.passwd2){
+                $scope.error=true;
+            }else{
+                $scope.error=false;
+            }
+            $scope.incrementer=false;
+            if($scope.edit && (!$scope.fName.length || !$scope.LName.length || !$scope.passwd1.length || !$scope.passwd2.length)){
+                $scope.incrementer=true;
+            }
+        };
+    });
+</script>
+</html>
