@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="sideCtrl">
+        <div ng-include="'../app/runoob.html'"></div>
+        <div ng-include="'http://c.runoob.com/runoobtest/angular_include.php'"></div>
+    </div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.config(function($sceDelegateProvider){
+        $sceDelegateProvider.resourceUrlWhitelist([
+            'http://c.runoob.com/runoobtest/**'
+        ]);
+    });
+    app.controller("sideCtrl",function($scope,$http){
+        $http.get("../app/js/site.json").success(function(response){
+            $scope.names=response.sites;
+        });
+    });
+</script>
+</body>
+</html>
