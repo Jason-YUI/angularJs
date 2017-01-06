@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            transition: all linear 0.5s;
+            background-color: lightblue;
+            height: 100px;
+        }
+        @keyframes mychange{
+            0%{
+                background-color: lightskyblue;
+                height: 100px;
+            }
+            25%{
+                background-color: #00A000;
+                height: 75px;
+            }
+            50%{
+                background-color: #1b6d85;
+                height: 50px;
+            }
+            75%{
+                background-color: #FF0000;
+                height: 25px;
+            }
+            100%{
+                background-color:#ffea77;
+                height: 0px;
+            }
+        }
+        div.ng-hide{
+            animation: 2s mychange;
+        }
+
+    </style>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+    <script src="https://cdn.static.runoob.com/libs/angular.js/1.4.6/angular-animate.min.js"></script>
+</head>
+<body ng-app="myApp">
+<h1>隐藏DIV:<input type="checkbox" ng-model="myCheck"></h1>
+
+<div ng-hide="myCheck"></div>
+<script>
+    var app = angular.module("myApp", ['ngAnimate']);
+</script>
+</body>
+</html>
