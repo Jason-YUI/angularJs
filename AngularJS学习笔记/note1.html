@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="http://s.zys.me/js/jq/jquery.js"></script>
+    <script type="text/javascript" src="http://s.zys.me/js/ng/angular.js"></script>
+</head>
+<body>
+    <div ng-controller="boxCtrl">
+        <div ng-click="click()" style="width: 100px; height: 100px; background-color: red;"></div>
+        <p>{{w}} x {{h}}</p>
+        <p>w: <input type="text" ng-model="w"></p>
+        <p>h: <input type="text" ng-model="h"></p>
+    </div>
+<script>
+    angular.module('app', [], angular.noop)
+        .controller('boxCtrl', function ($scope, $element) {
+            var e = $element.children().eq(0);
+            $scope.w = e.width();
+            $scope.h = e.height();
+
+            $scope.click = function () {
+                $scope.w = ($scope.w) + 10;
+                $scope.h = ($scope.h) + 10;
+            };
+
+            $scope.$watch('w', function (to) {
+                e.width(to);
+            });
+
+            $scope.$watch('h', function (to) {
+                e.height(to);
+            });
+        });
+    angular.bootstrap(document.documentElement, ['app']);
+</script>
+</body>
+</html>
