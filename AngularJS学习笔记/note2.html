@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://s.zys.me/js/jq/jquery.js"></script>
+    <script type="text/javascript" src="http://s.zys.me/js/ng/angular.js"></script>
+</head>
+<body>
+    <input type="text" ng-model="a" ng-controller="testCtrl" id="test">
+    <!--<button id="clickme">clickme</button>-->
+    <!--<div ng:app ng-controller="Ctrl">{{message}}</div>-->
+    <!--<p id="test" ng-controller="TestCtrl" ng-click="click()">{{ a }}</p>-->
+    <script>
+        angular.module('app', [])
+            .controller('testCtrl', function ($scope) {
+                $scope.a = '123';
+            });
+        angular.bootstrap(document.documentElement, ['app']);
+//        var button = document.getElementById('clickme');
+//        function buttonClick() {
+//            alert('the button was clicked');
+//        }
+//
+//        button.addEventListener('click', buttonClick);
+//
+//        function timerComplete() {
+//            alert('timer complete');
+//        }
+//
+//        setTimeout(timerComplete, 2000);
+
+
+//        angular.module('app', [])
+//            .controller('TestCtrl', function ($scope) {
+//                $scope.a = 1;
+//                $scope.click = function () {
+//                    $scope.a = 2;
+//                }
+//            });
+//        angular.bootstrap(document.documentElement, ['app']);
+
+//        function Ctrl ($scope) {
+//            $scope.message = '1';
+//            setTimeout(function () {
+//                $scope.$apply(function () {
+//                    $scope.message = '2';
+//                })
+//            }, 2000)
+//        }
+    </script>
+</body>
+</html>
