@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://s.zys.me/js/jq/jquery.js"></script>
+    <script type="text/javascript" src="http://s.zys.me/js/ng/angular.js"></script>
+</head>
+<body ng-app="app">
+    <div ng-controller="Ctrl">
+        <ul ng-repeat="x in lists">
+            <li>{{x}}</li>
+        </ul>
+    </div>
+    <div ng-controller="Ctrl2">
+        <ul ng-repeat="x in members">
+            <li>{{$index}}, {{x.name}}</li>
+        </ul>
+    </div>
+    <div ng-controller="Ctrl3" ng-init="a=[4, 5, 6]">
+        <ul ng-repeat="m in a">
+            <li>{{m}}</li>
+        </ul>
+    </div>
+    <div ng-style="{width: 100 + 'px', height: 100 + 'px', backgroundColor: 'red'}"></div>
+    <div>
+        <ul ng-init="l = [6, 7, 8]">
+            <li ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="m in l">{{m}}</li>
+        </ul>
+    </div>
+    <div ng-show="true">11</div>
+    <div ng-show="false">22</div>
+    <div ng-hide="false">33</div>
+    <div ng-init="a = 2">
+        <ul ng-switch on="a">
+            <li ng-switch-when="1">1</li>
+            <li ng-switch-when="2">2</li>
+            <li ng-switch-default>other</li>
+        </ul>
+    </div>
+    <img ng-src="{{'1' + '.jpg'}}" alt="" width="100px">
+    <a href="{{'#' + '123'}}">here</a>
+    <p ng-click="click($event)">点击</p>
+    <hr>
+    <form action="" name="test_form" ng-controller='testCtrl'>
+        <input type="text" name="a" ng-model="a" required>
+        <span ng-click="see()">{{ test_form.$valid}}</span>
+    </form>
+<script>
+    angular.module('app', [])
+        .controller('Ctrl', function ($scope) {
+            $scope.lists = [1, 2, 3, 4];
+        })
+        .controller('Ctrl2', function ($scope) {
+            $scope.members = [ {name: 'a'}, {name: 'b'}];
+        })
+        .controller('Ctrl3', function ($scope) {
+
+        })
+</script>
+</body>
+</html>
