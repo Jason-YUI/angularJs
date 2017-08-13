@@ -7,56 +7,176 @@
     <script type="text/javascript" src="http://s.zys.me/js/ng/angular.js"></script>
 </head>
 <body ng-app="app">
-    <div ng-controller="Ctrl">
-        <ul ng-repeat="x in lists">
-            <li>{{x}}</li>
-        </ul>
-    </div>
-    <div ng-controller="Ctrl2">
-        <ul ng-repeat="x in members">
-            <li>{{$index}}, {{x.name}}</li>
-        </ul>
-    </div>
-    <div ng-controller="Ctrl3" ng-init="a=[4, 5, 6]">
-        <ul ng-repeat="m in a">
-            <li>{{m}}</li>
-        </ul>
-    </div>
-    <div ng-style="{width: 100 + 'px', height: 100 + 'px', backgroundColor: 'red'}"></div>
-    <div>
-        <ul ng-init="l = [6, 7, 8]">
-            <li ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="m in l">{{m}}</li>
-        </ul>
-    </div>
-    <div ng-show="true">11</div>
-    <div ng-show="false">22</div>
-    <div ng-hide="false">33</div>
-    <div ng-init="a = 2">
-        <ul ng-switch on="a">
-            <li ng-switch-when="1">1</li>
-            <li ng-switch-when="2">2</li>
-            <li ng-switch-default>other</li>
-        </ul>
-    </div>
-    <img ng-src="{{'1' + '.jpg'}}" alt="" width="100px">
-    <a href="{{'#' + '123'}}">here</a>
-    <p ng-click="click($event)">点击</p>
-    <hr>
-    <form action="" name="test_form" ng-controller='testCtrl'>
-        <input type="text" name="a" ng-model="a" required>
-        <span ng-click="see()">{{ test_form.$valid}}</span>
+    <!--<form action="" ng-controller="TestCtrl1" name="test_form">-->
+        <!--<input type="text" name="a" ng-model="a" required ng-pattern="/abc/">-->
+        <!--<span ng-click="see()">{{test_form.$error}}</span>-->
+    <!--</form>-->
+    <!--<div ng-controller="Ctrl">-->
+        <!--<ul ng-repeat="x in lists">-->
+            <!--<li>{{x}}</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!--<div ng-controller="Ctrl2">-->
+        <!--<ul ng-repeat="x in members">-->
+            <!--<li>{{$index}}, {{x.name}}</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!--<div ng-controller="Ctrl3" ng-init="a=[4, 5, 6]">-->
+        <!--<ul ng-repeat="m in a">-->
+            <!--<li>{{m}}</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!--<div ng-style="{width: 100 + 'px', height: 100 + 'px', backgroundColor: 'red'}"></div>-->
+    <!--<div>-->
+        <!--<ul ng-init="l = [6, 7, 8]">-->
+            <!--<li ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="m in l">{{m}}</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!--<div ng-show="true">11</div>-->
+    <!--<div ng-show="false">22</div>-->
+    <!--<div ng-hide="false">33</div>-->
+    <!--<div ng-init="a = 2">-->
+        <!--<ul ng-switch on="a">-->
+            <!--<li ng-switch-when="1">1</li>-->
+            <!--<li ng-switch-when="2">2</li>-->
+            <!--<li ng-switch-default>other</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!--<img ng-src="{{'1' + '.jpg'}}" alt="" width="100px">-->
+    <!--<a href="{{'#' + '123'}}">here</a>-->
+    <!--<p ng-click="click($event)">点击</p>-->
+    <!--<hr>-->
+    <!--&lt;!&ndash;<form action="" name="test_form" ng-controller='testCtrl'>&ndash;&gt;-->
+        <!--&lt;!&ndash;<input type="text" name="a" ng-model="a" required>&ndash;&gt;-->
+        <!--&lt;!&ndash;<span ng-click="see()">{{ test_form.$valid}}</span>&ndash;&gt;-->
+    <!--&lt;!&ndash;</form>&ndash;&gt;-->
+    <!--<div ng-controller="testCtrl2">-->
+        <!--<div style="width: 100px; height: 100px; background-color: orange" ng-style="style"></div>-->
+        <!--&lt;!&ndash;<input type="text" name="width" ng-model="width"/>&ndash;&gt;-->
+        <!--<input type="text" name="width" ng-model="style.width"/>-->
+    <!--</div>-->
+    <!--<form action="" name="test_form" ng-controller="testFormCtrl">-->
+        <!--<input type="text" name="a" required="" ng-model="a">-->
+        <!--<span ng-click="see()">{{test_form.$valid}}</span>-->
+    <!--</form>-->
+    <!--<hr>-->
+    <!--<form action="" name="test_form2" ng-controller="testFormCtrl2">-->
+        <!--<input type="text" name="a" required ng-model="a">-->
+        <!--<input type="text" name="b" required ng-model="b" ng-minlength="2">-->
+        <!--<span ng-click="see()"> {{test_form2.$error}} </span>-->
+    <!--</form>-->
+    <form action="" ng-controller="TestCtrl1">
+        <input type="checkbox"  ng-model="a" ng-true-value="AA" ng-false-value="BB">
+        <span>{{a}}</span>
     </form>
+    <form action="" ng-controller="TestCtrl2">
+        <input type="radio" name="a" ng-model="a" value={{tab[0]}}>
+        <input type="radio" name="a" ng-model="a" value={{tab[1]}}>
+        <span>{{a}}</span>
+    </form>
+    <form action="" ng-controller="TestCtrl3" ng-init="list=[0, 1, 2, 3];">
+        <select name="" id="" ng-model="a" ng-options="x for x in list" ng-change="show()">
+            <option value="">可以加这个空值</option>
+        </select>
+        <span>{{a}}</span>
+    </form>
+    <hr>
+    <form action="" ng-controller="TestCtrl4" ng-init="o=[{name: 'A', g: '00', v: '='},
+                                                          {name: 'B', g: '11', v: '+'},
+                                                          {name: 'C', g: '22', v: '!'}]; a=o[1]">
+        <select name="" id="" ng-model="a" ng-options="x.v as x.name group by x.g for x in o" ng-change="show()">
+            <option value="">default</option>
+        </select>
+        <span>{{a}}</span>
+    </form>
+    <hr>
+    <br>
+    <form action="" ng-controller="optionCtrl1" ng-init="o={a: 0, b: 1}; a = o.a;">
+        <select name="" id="" ng-model="a" ng-options="k for (k, v) in o" ng-change="show()"></select>
+        <span>{{a}}</span>
+    </form>
+    <hr>
+    <div ng-controller="orderByCtrl">
+        {{data | orderBy: 'age'}}<br>
+        {{data | orderBy: '-age'}}<br>
+        {{data | orderBy: '-age' | limitTo: 2}}<br>
+        {{data | orderBy: ['age', 'name']}}<br>
+    </div>
+    <br>
+    <div ng-controller="filterCtrl">
+        {{data | filter: 'b' }}<br>
+        {{data | filter: '!B'}}<br>
+        {{data | filter: {name: 'A'}}}<br>
+    </div>
 <script>
     angular.module('app', [])
-        .controller('Ctrl', function ($scope) {
-            $scope.lists = [1, 2, 3, 4];
+        .controller('TestCtrl1', function ($scope) {
+            $scope.a = 'AA';
         })
-        .controller('Ctrl2', function ($scope) {
-            $scope.members = [ {name: 'a'}, {name: 'b'}];
+        .controller('TestCtrl2', function ($scope) {
+            $scope.tab = ['AA', 'BB'];
         })
-        .controller('Ctrl3', function ($scope) {
+        .controller('TestCtrl3', function ($scope) {
+            $scope.show = function () {
+                console.log($scope.a);
+            }
+        })
+        .controller('TestCtrl4', function ($scope) {
+            $scope.show = function () {
 
+            }
         })
+        .controller('optionCtrl1', function ($scope) {
+            $scope.show = function () {
+
+            }
+        })
+        .controller('orderByCtrl', function ($scope) {
+            $scope.data = [
+                {name: 'B', age: 4},
+                {name: 'C', age: 3},
+                {name: 'D', age: 1},
+                {name: 'A', age: 2},
+            ];
+        })
+        .controller('filterCtrl', function ($scope) {
+            $scope.data = [
+                {name: 'B', age: 4},
+                {name: 'C', age: 3},
+                {name: 'D', age: 1},
+                {name: 'A', age: 2},
+            ]
+        })
+//        .controller('Ctrl', function ($scope) {
+//            $scope.lists = [1, 2, 3, 4];
+//        })
+//        .controller('Ctrl2', function ($scope) {
+//            $scope.members = [ {name: 'a'}, {name: 'b'}];
+//        })
+//        .controller('Ctrl3', function ($scope) {
+//
+//        })
+//        .controller('testCtrl2', function ($scope, $element) {
+////            $scope.width = 100;
+////            $scope.$watch('width', function (to, from) {
+////                $element.children(":first").width(to);
+////            })
+//            $scope.style = { width: 100 + 'px'};
+//        })
+//        .controller('testFormCtrl', function ($scope) {
+//            $scope.see = function () {
+//                console.log($scope.test_form);
+//                console.log($scope.test_form.a);
+//            }
+//        })
+//        .controller('testFormCtrl2', function ($scope) {
+//            $scope.see = function () {
+//                console.log($scope.test_form2.$error);
+//            }
+//        })
+//        .controller('TestCtrl1', function ($scope) {
+//
+//        })
 </script>
 </body>
 </html>
