@@ -103,10 +103,30 @@
         {{data | orderBy: ['age', 'name']}}<br>
     </div>
     <br>
-    <div ng-controller="filterCtrl">
-        {{data | filter: 'b' }}<br>
-        {{data | filter: '!B'}}<br>
-        {{data | filter: {name: 'A'}}}<br>
+    <!--<div ng-controller="filterCtrl">-->
+        <!--{{data | filter: 'b' }}<br>-->
+        <!--{{data | filter: '!B'}}<br>-->
+        <!--{{data | filter: {name: 'A'}}}<br>-->
+    <!--</div>-->
+    <div ng-controller="dataCtrl">
+        {{ a | date: 'yyyy-MM-dd HH:mm:ss' }}<br>
+        {{ [1,2,3,4,5] | limitTo: 2 }}<br>
+        {{ [1,2,3,4,5] | limitTo: -3 }}<br>
+        {{ 'abc' | uppercase }}<br>
+    </div>
+    <hr>
+    <br>
+    <div ng-controller="tableCtrl">
+        <table>
+            <tr>
+                <th ng-click="f='name'; rev=!rev">名字</th>
+                <th ng-click="f='age'; rev=!rev">年龄</th>
+            </tr>
+            <tr ng-repeat="o in data | orderBy: f : rev">
+                <td>{{o.name}}</td>
+                <td>{{o.age}}</td>
+            </tr>
+        </table>
     </div>
 <script>
     angular.module('app', [])
@@ -145,6 +165,18 @@
                 {name: 'C', age: 3},
                 {name: 'D', age: 1},
                 {name: 'A', age: 2},
+            ]
+        })
+        .controller('dataCtrl',function ($scope) {
+            $scope.a = ((new Date().valueOf()));
+        })
+        .controller('tableCtrl', function ($scope) {
+            $scope.data = [
+                {name: 'a', age: 3},
+                {name: 'c', age: 4},
+                {name: 'b', age: 1},
+                {name: 'd', age: 2},
+
             ]
         })
 //        .controller('Ctrl', function ($scope) {
