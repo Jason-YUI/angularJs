@@ -128,6 +128,18 @@
             </tr>
         </table>
     </div>
+    <hr>
+    <br>
+    <div ng-controller="searchCtrl" ng-init="a=data[0].name;q=''">
+        <div>
+            <span>查找：</span>
+            <input type="text" ng-model="q">
+        </div>
+        <select ng-multipe="true" ng-model="a" name="" id=""
+                ng-options="o.name as o.name + '(' + o.age + ')' for o in data
+                            | filter: {name: q} | orderBy: ['age', 'name']">
+        </select>
+    </div>
 <script>
     angular.module('app', [])
         .controller('TestCtrl1', function ($scope) {
@@ -178,6 +190,14 @@
                 {name: 'd', age: 2},
 
             ]
+        })
+        .controller('searchCtrl', function ($scope) {
+            $scope.data = [
+                {name: 'B', age: 4},
+                {name: 'A', age: 1},
+                {name: 'D', age: 3},
+                {name: 'C', age: 3},
+            ];
         })
 //        .controller('Ctrl', function ($scope) {
 //            $scope.lists = [1, 2, 3, 4];
