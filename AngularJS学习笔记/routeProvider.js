@@ -123,3 +123,41 @@ angular.module('app', [])
             function (data) { console.log('error' + data)}
         )
     })
+    .controller('bindCtrl', function ($scope) {
+        // var f = angular.bind({a: 'x'}, function () {
+        //     console.log(this.a)
+        // });
+        // f();
+        //参数动态绑定
+        // var f = function (x) {
+        //     console.log(x)
+        // }
+        // angular.bind({}, f, 'x')();
+        //
+        // var a = {'x': '123'};
+        // // console.log(a);
+        // var b = angular.copy(a);
+        // a.x = '456';
+        // console.log(b);
+        //
+        //
+        var a = {'x': '123'};
+        var b = {'xx': '456'};
+        angular.extend(b, a);
+        console.log(b);
+        console.log(angular.lowercase('A'));
+        var json = {
+            'name': 'jason',
+            'age': 12
+        };
+        // console.log(angular.fromJson(json));
+        var obj1 = {a: '1', b: '2'};
+        var arr = ['a', 'b', 'c'];
+        // console.log(l);
+        angular.forEach(obj1, function (v, k) {
+            console.log(k+ ':' + v);
+        });
+        angular.forEach(arr, function (v) {
+            console.log(v);
+        })
+    })
