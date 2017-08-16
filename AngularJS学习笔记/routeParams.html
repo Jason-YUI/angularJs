@@ -3,24 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="text/javascript" src="http://s.zys.me/js/jq/jquery.js"></script>
-    <script type="text/javascript" src="http://s.zys.me/js/ng/angular.js"></script>
-</head>
-<body ng-app="ngView">
-<div ng-view="">
 
-</div>
-<script>
-    angular.module('ngView', [], function ($routeProvider) {
-        $routeProvider.when('/book/:title',
-            {
-              template: '{{title}}',
-              controller: function ($scope, $routeParams) {
-                  $scope.title = $routeParams.title
-              }  
-            }
-        )
-    });
-</script>
+</head>
+<body ng-app="app">
+<!--<div ng-controller="testCtrl">-->
+    <!--{{name}}<br>-->
+    <!--{{age}}-->
+<!--</div>-->
+<!--<div ng-controller="deferCtrl"></div>-->
+<!--<div ng-controller="qCtrl"></div>-->
+<!--<div ng-controller="promiseCtrl"></div>-->
+<!--<div ng-controller="rejectCtrl"></div>-->
+<div ng-controller="whenCtrl"></div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script src="routeProvider.js"></script>
 </body>
 </html>
