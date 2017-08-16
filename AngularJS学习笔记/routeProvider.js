@@ -161,3 +161,54 @@ angular.module('app', [])
             console.log(v);
         })
     })
+    .controller('timeoutCtrl' ,function ($scope, $parse) {
+        // var p = $timeout(function () { console.log('aaaa') }, 5000);
+        // p.then(function () {
+        //     console.log('x')
+        // });
+        var get_name = $parse('name');
+        // $scope.show = function () {
+        //     console.log($scope.get_name($scope));
+        // }
+        // $scope.set = function () {
+        //     $scope.n ame = '123';
+        // }
+        var set_name = get_name.assign;
+        var r = get_name({name: 'xx'}, {name: 'abc'});
+        console.log(r);
+
+        var s = {};
+        set_name(s, '123');
+        console.log(s);
+    })
+    .controller('compileCtrl', function ($scope, $element, $compile) {
+        $scope.a = '123';
+        $scope.set = function () {
+            var tpl = $compile('<p>hello, {{a}}</p>');
+            var e = tpl($scope);
+            $element.append(e);
+        }
+        $scope.set();
+    })
+    // .controller('providerCtrl', function ($scope) {
+    //     var pp = function () {
+    //         this.$get = function () {
+    //             return { 'haha' :'123'}
+    //         }
+    //     }
+    // });
+
+angular.module('MyModule', [], function($provide){
+    $provide.factory('S1', function(){
+        return 'I am S1';
+    });
+    $provide.factory('S2', function(){
+        return {see: function(){return 'I am S2'}}
+    });
+});
+
+var app = angular.module('Demo', ['MyModule'], angular.noop);
+app.controller('TestCtrl', function($scope, S1, S2){
+    console.log(S1)
+    console.log(S2.see())
+});
