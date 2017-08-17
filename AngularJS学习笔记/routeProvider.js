@@ -198,17 +198,17 @@ angular.module('app', [])
     //     }
     // });
 
-angular.module('MyModule', [], function($provide){
-    $provide.factory('S1', function(){
-        return 'I am S1';
-    });
-    $provide.factory('S2', function(){
-        return {see: function(){return 'I am S2'}}
-    });
-});
-
-var app = angular.module('Demo', ['MyModule'], angular.noop);
-app.controller('TestCtrl', function($scope, S1, S2){
-    console.log(S1)
-    console.log(S2.see())
-});
+// angular.module('MyModule', [], function($provide){
+//     $provide.factory('S1', function(){
+//         return 'I am S1';
+//     });
+//     $provide.factory('S2', function(){
+//         return {see: function(){return 'I am S2'}}
+//     });
+// });
+//
+// var app = angular.module('Demo', ['MyModule'], angular.noop);
+// app.controller('TestCtrl', function($scope, S1, S2){
+//     console.log(S1)
+//     console.log(S2.see())
+// });
