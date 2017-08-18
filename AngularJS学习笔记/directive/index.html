@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://s.zys.me/js/jq/jquery.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+</head>
+<body ng-app="Demo">
+<div ng-controller="myCtrl"></div>
+<code lines>
+    //失去焦点使用 jQuery 的扩展支持冒泡
+    app.directive('ngBlur', function($parse){
+    return function($scope, $element, $attr){
+    var fn = $parse($attr['ngBlur']);
+    $element.on('focusout', function(event){
+    fn($scope, {$event: event});
+    });
+    }
+    });
+</code>
+
+<div code lines>
+    //失去焦点使用 jQuery 的扩展支持冒泡
+    app.directive('ngBlur', function($parse){
+    return function($scope, $element, $attr){
+    var fn = $parse($attr['ngBlur']);
+    $element.on('focusout', function(event){
+    fn($scope, {$event: event});
+    });
+    }
+    });
+</div>
+<script src="directive.js"></script>
+</body>
+</html>

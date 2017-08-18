@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://s.zys.me/js/jq/jquery.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+</head>
+<body ng-app="app">
+    <div ng-controller="myCtrl">
+        <p>{{a | map:map_value:'>>':'(no)'}}</p>
+        <p>{{b | map:map_value:'>>':'(no)'}}</p>
+    </div>
+</body>
+<script src="filter.js"></script>
+</html>
