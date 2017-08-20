@@ -1,6 +1,7 @@
 // var stringObj = '终古人民共和国，终古人民';
 // var reg = new RegExp('终古', 'g');
 // stringObj.replace(reg, '中国');
+
 var app = angular.module('Demo', [], angular.noop);
 app.controller('myCtrl', function ($scope, $compile) {
     var link = $compile('<p>{{ text }}</p>');
