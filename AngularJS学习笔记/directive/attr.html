@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://s.zys.me/js/jq/jquery.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+    <script src="attr.js"></script>
+</head>
+<body ng-app="Demo">
+    <div ng-controller="TestCtrl">
+        <!--<div a abc="here" xx="{{ a }}" c="ccc"></div>-->
+        <!--<div a abc="here = here + 1" ng-click="show(here)">这里</div>-->
+        <!--<div>{{ here }}</div>-->
+        <!--<a>hahah</a>-->
+        <input type="text" ng-model="a" test />
+        <button ng-click="show(a)">查看</button>
+    </div>
+</body>
+</html>
