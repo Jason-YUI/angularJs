@@ -7,6 +7,20 @@
     </li>
 </ul>
 
+<input #phone placeholder="phone number"></input>
+
+<button (click)="callphone(phone.value)">call</button>
+
 <hero-detail *ngIf="selectedHero" [hero]="selectedHero"></hero-detail>
+
+<div> Title through a pipe chain: {{ title | uppercase }}</div>
+
+<div> Title through a pipe chain: {{ title | uppercase | lowercase }}</div>
+
+<div> Birthday: {{ currentHeros?.birthday | data: 'longDate'}}</div>
+
+<div> {{ currentHero | json }} </div>
+
+<div *ngFor="hero"></div>
 
 <img [src]="heroImageUrl">
